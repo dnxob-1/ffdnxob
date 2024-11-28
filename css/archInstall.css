@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Times New Roman;
+  user-select: none;
+  padding: 12px;
+}
+
+p {
+  padding: 12px;
+  margin: 15px;
+}
+
+h3 {
+  padding: 12px;
+  margin: 10px;
+}
+
+a {
+  padding: 13px;
+  background-color: lightgrey;
+  border: 2px solid white;
+  border-radius: 10px;
+  align-content: center;
+  text-align: center;
+  font-size: 15px;
+  margin: 10px;
+  position: relative;
+}
+
+#downloadArchIso {
+  margin: 0;
+  padding: 0px;
+  background-color: white;
+  font-size: 18px;
+}
+
+#goBack {
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-items: center;
+  text-align: center;
+  width: 5%;
+}
+
+#goBackToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+#goBackToTop:hover {
+  background-color: #0056b3;
+}

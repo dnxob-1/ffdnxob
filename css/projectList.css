@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto;
+  user-select: none;
+}
+
+.navi {
+  transition: width 0.9s ease;
+  background-color: darkred;
+  left: 0;
+  position: fixed;
+  height: 100%;
+  width: 20%;
+  border: 2px solid black;
+}
+
+#goBack {
+  display: block;
+}
+
+#arrImg {
+  transition: left 0.7s ease;
+  width: 40;
+  height: 40;
+  left: 200;
+  bottom: 5;
+  position: fixed;
+  border: 2px solid black;
+}
+
+.ulOfSec {
+  text-align: center;
+  list-style-type: none;
+  padding: 15px;
+}
+
+#annoyance {
+  font-size: 10px;
+}

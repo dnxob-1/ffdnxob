@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Tahoma;
+  user-select: none;
+}
+
+.bodySection {
+  font-size: 23px;
+}
+
+#defIndex {
+  text-decoration: none;
+}
+
+#defIndex:active,
+#defIndex:visited {
+  color: black;
+  text-decoration: none;
+}
+
+#defIndex:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+.unorderedList1 {
+  list-style-type: none;
+  width: 0%;
+}
+
+#projectsLink {
+  width: 0%;
+}
+
+#extrasLink {
+  margin: 5px;
+}
+
+#backLink {
+  margin: 10px;
+}
+
+#socials {
+  padding-top: 7px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  position: absolute;
+  bottom: 10;
+  border: 2px solid white;
+  border-radius: 9px;
+  width: 25%;
+  background-color: burlywood;
+  cursor: pointer;
+  transition: background-color 1s ease-in-out;
+}
+
+#socials:hover {
+  background-color: #45a049;
+}
+
+#imageGithub {
+  width: 40;
+  height: 40;
+}
+
+#imageLinkedIn {
+  width: 50;
+  height: 40;
+}

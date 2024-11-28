@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+#setHeader {
+  text-align: center;
+}
+
+.sets1 {
+  text-align: right;
+  position: absolute;
+  padding: 20px;
+  margin: 20px;
+  width: 40%;
+  right: 0;
+  font-size: 25px;
+}
+
+#ul1 {
+  list-style-type: none;
+}
+
+#volume,
+#volSet,
+#setVal {
+  display: none;
+}
+
+#selectMusic {
+  display: none;
+}
+
+.sets2 {
+  text-align: left;
+  position: absolute;
+  padding: 20px;
+  margin: 20px;
+  width: 40%;
+  left: 0;
+  font-size: 25px;
+}
+
+#ul2 {
+  list-style-type: none;
+}
+
+#goBack {
+  bottom: 0;
+  position: absolute;
+  font-size: 20px;
+  margin: 20px;
+}
