@@ -1,0 +1,260 @@
+<!DOCTYPE >
+<html>
+  <head>
+    <link rel="stylesheet" href="../css/archInstall.css" />
+    <link rel="icon" href="../images/favicon1.png" id="theFaviCon" />
+  </head>
+  <header>
+    <h1>How To Dual-Boot Archlinux</h1>
+    <h5>for windows</h5>
+    <a href="page4.html" id="goBack">back?</a>
+  </header>
+  <body>
+    <p><strong>Click on the boxes to copy</strong></p>
+    <p>
+      This will serve as a guide to installing archlinux if you are a windows
+      user. First of all, lets start with some prereqs. Most of these need to be
+      checked out or else it just won't work. (it's okay to have lower ram or
+      storage, it just will be a bit laggier)
+    </p>
+    <ul>
+      <li>A usb stick (with preferably 64 GiBs of storage)</li>
+      <li>A computer with at least 250 GiBs of storage</li>
+      <li>A system that has at least 6 GiBs of random access memory (RAM)</li>
+    </ul>
+    <p>Now that that is out of the way. Lets go!</p>
+    <h3>Step 1</h3>
+    <p>
+      Download balena etcher or rufus. In my personal experience, I did not have
+      a good time with balena etcher and so I used rufus. But
+      <strong>please</strong> pick whichever works for you.
+    </p>
+    <h3>Step 2</h3>
+    <p>
+      <a
+        href="https://geo.mirror.pkgbuild.com/iso/2024.11.01/"
+        id="downloadArchIso"
+        >Download</a
+      >
+      the archlinux .iso file. The second one would be the one you would
+      download, 'archlinux-2024.11.01-x86_64.iso' or this one
+      'archlinux-x86_64.iso'.
+    </p>
+    <h3>Step 3</h3>
+    <p>
+      Move the iso file into your usb and use balena etcher or rufus on that usb
+      and configure your settings there depending on whether your system is
+      BIOS, or UEFI. You are basically making a bootable usb. After doing, you
+      should get some other files other than your iso file inside your usb.
+    </p>
+    <h3>Step 4</h3>
+    <p>
+      Make sure to have disabled secure boot for your computer. You have to
+      figure out how to get into your BIOS or UEFI menu for your specific
+      computer. After that, just find the secure boot option and make sure that
+      it is disabled. If your computer says that this is dangerous, don't worry
+      about it. All that secure boot does, is that it makes it so that when your
+      computer starts, there are no virus or things that run when your computer
+      starts, basically.
+      <strong
+        >Disabling secure boot is very IMPORTANT. Archlinux WILL NOT run if it
+        is enabled.</strong
+      >
+      During this time, you might also want to change the boot order, and make
+      your usb be the primary boot. That way, if your usb is in, then it will
+      always boot from the usb first, and not from windows. (Optional). You
+      probably won't have to do step 6 if you do this, and it successfully
+      boots. Just restart your computer after step 5
+    </p>
+    <h3>Step 5</h3>
+    <p>
+      Open disk management. Find your disk. Right click on it, then click on
+      shrink volume. Find "Enter amount of space to shrink in MB", and have at
+      least 40 GiBs, or more, put in there. Then click shrink.
+    </p>
+    <h3>Step 6</h3>
+    <p>
+      Go to your boot menu, by either searching for it or pressing a designated
+      key on your keyboard while windows is starting (This is usually the F8
+      key). Click on Use a Device, find your usb, and click it.
+    </p>
+    <h3>Step 7</h3>
+    <p>
+      If everything worked correctly, you should soon see an archlinux menu.
+      Click the install medium. Then connect to the internet. Type in these
+      following commands:
+    </p>
+    <a>iwctl</a>
+    <p>Then</p>
+    <a>device list</a>
+    <p>to find your device that connects to the internet (usually is wlan0).</p>
+    <a>station wlan0 scan</a> <a>station wlan0 get-networks</a>
+    <p>Then connect to the desired network by using</p>
+    <a>station wlan0 connect ""</a>
+    <p>
+      (put the name of the network in the ""). Ping a website to check if the
+      internet is working. For example
+    </p>
+    <a>ping google.com</a>
+    <h3>Step 8</h3>
+    <p>
+      Next up, we have to partition the usb. The usb will be partitioned
+      (divided) into three parts. The First is going to be for the bootloader
+      and other important system things. The second will be for swap, which is
+      like backup ram in case your system starts using up too much ram.
+      Remember, it's not new/extra ram, it's still the ram in your system. The
+      third and final one will be for the linux filesystem. This last one will
+      have the most data allocated to it since it's where you're actual files
+      will be located. Here's how much storage you should put in each one:
+    </p>
+    <ul>
+      <li>
+        For the boot sector, it is recommended to have 512 MiBs, which can be
+        typed as 512M. You can put more here if you're going to download more
+        linux kernels. But I would only recommend 1 GiBs. Which can be written
+        as 1G
+      </li>
+      <li>
+        For the swap, this really depends on your actual ram. You should
+        probably allocate half of your actual ram to that. For example, if you
+        have 12G, put 6G for the swap.
+      </li>
+      <li>
+        Lastly we have the linux filesystem. This can have however much is left
+        from the allocation.
+      </li>
+    </ul>
+    <p>Here's how you would do it. Type in the command line</p>
+    <a>cfdisk</a>
+    <p>
+      This will open a menu. Hopefully you will be able to see your usb
+      partition. If you see something like NVMe, that is most likely your actual
+      disk on your computer, usually the usb is sda, but it can also be NVMe.
+      Press on delete. This should then turn into "free space". Afterward, press
+      on new, then partition the amount recommended, press type, find EFI
+      system, click on it. Then hover over "free space" once more, press new,
+      allocate the amount recommended, press type, find linux swap. Finally,
+      press new, allocate the recommended amount, press type, then linux
+      filesystem. Press write, to write everything.
+    </p>
+    <p>Use the following commands to finish up the process.</p>
+    <a>mkfs.ext4 /dev/sda3</a>
+    <p>
+      /dev/sda1 should be whichever partition that you just partitioned with
+      cfdisk that has the linux filesystem, this is also called the root
+      partition. That command turns the filesystem to filesys-type ext4, which
+      is a format for the files.
+    </p>
+    <a>mkfs.fat -F32 /dev/sda1</a>
+    <p>
+      This one is for your efi system or just your boot sector. It turns it into
+      fat32, another file format. The last two are for the swap.
+    </p>
+    <a>mkswap /dev/sda2</a> <a>swapon /dev/sda2</a>
+    <p>Make sure to change the sda's with your corresponding ones.</p>
+    <h3>Step 9</h3>
+    <p>Make two directories (folders), using</p>
+    <a>mkdir /mnt</a>
+    <p>and</p>
+    <a>mkdir /mnt/boot</a>
+    <p>
+      The /mnt is for your entire filesystem, while the boot is where you are
+      going to put all of your boot related things, like grub.
+    </p>
+    <p>
+      Mount your root partition to /mnt and your boot sector to your /mnt/boot,
+      using the following commands:
+    </p>
+    <a>mount /dev/sda3 /mnt</a>
+    <p>and</p>
+    <a>mount /dev/sda1 /mnt/boot</a>
+    <h3>Step 10</h3>
+    <p>Install the base packages</p>
+    <a>pacstrap -K /mnt base linux linux-firmware vim</a>
+    <p>
+      generate the fstab, which contains the uuids for things that are like
+      usbs, root (/), and the boot sector. You can add modifiers to the things
+      mentioned.
+    </p>
+    <a>genfstab -U /mnt >> /mnt/etc/fstab</a>
+    <p>and chroot in there</p>
+    <a>arch-chroot /mnt</a>.
+    <h3>Step 11</h3>
+    <p>Configure the system. Set the timezone</p>
+    <a>ln -sf /usr/share/zoneinfo/theRegion/theCity /etc/localtime</a>
+    <p>
+      Replace theRegion and theCity with yours. I kinda forgot how to see which
+      cities and regions are available
+    </p>
+    <a>hwclock --systohc</a>
+    <p>to sync the time. Now is the time to set the locale.</p>
+    <a>nano /etc/locale.conf</a>
+    <p>
+      Do this command and find 'en_US.UTF-8 UTF-8', remove the '#' that is at
+      the start of that line. Generate the locale
+    </p>
+    <a>locale-gen</a>
+    <p>and then</p>
+    <a>echo "LANG=en_US.UTF-8" > /etc/locale.conf</a>
+    <p>if you're using English. Set the host name by</p>
+    <a>echo "thehostname" > /etc/hostname</a>
+    <p>
+      replace thehostname with whatever hostname you want. Set the root's
+      password.
+    </p>
+    <a>passwd</a>
+    <p>Don't forget your password.</p>
+    <h3>Step 12</h3>
+    <p>Now time to install grub, the bootloader.</p>
+    <a>pacman -S grub efibootmgr nano</a>
+    <p>Then</p>
+    <a
+      >grub-install --target=x86_64-efi --efi-directory=/boot
+      --bootloader-id=GRUB</a
+    >
+    <p>Finally do,</p>
+    <a>grub-mkconfig -o /boot/grub/grub.cfg</a>
+    <p>
+      Now you're basically done with the install. But you could always install a
+      few packages and do some extra things before leaving...
+    </p>
+    <h3>Step 13</h3>
+    <p>Here's a command to use</p>
+    <a
+      >pacman -S networkmanager vim ntfs-3g dosfstools sudo wget curl
+      xorg-server xorg-xinit os-prober base-devel git python python-pip perl
+      clang lld btop sysstat gcc rsync zip unzip tar gzip zstd</a
+    >
+    <p>
+      You can also add a user to your system. Using root is often frowned upon,
+      so it's best to use a user.
+    </p>
+    <a>useradd -m -G wheel theusername</a>
+    <p>and then add a password to it</p>
+    <a>passwd theusername</a>.
+    <p>replace theusername with your own username that you want.</p>
+    <p>Do</p>
+    <a>nano /etc/sudoers</a>
+    <p>and remove the '#' from the start of the line</p>
+    <a>%wheel ALL=(ALL:ALL) ALL</a>
+    <h3>Step 14</h3>
+    <p>That should do it. Now you can exit chroot by using</p>
+    <a>exit</a>
+    <p>
+      Afterward, you should restart and then you should get booted into
+      archlinux once more. The recommended actions to take after logging in, is
+      to install a window-manager or desktop environment, examples include
+      hyprland dwm, i3 for window-managers, and kde plasma, gnome for desktop
+      environment. To install them you need to type in
+    </p>
+    <a>sudo pacman -S packages</a>
+    <p>replace packages with your desired packages.</p>
+    <p>Thanks for reading.</p>
+    <button id="goBackToTop" onclick="scrollToTop()">Back to top</button>
+  </body>
+  <footer>
+    <a href="page4.html" id="goBack">back?</a>
+  </footer>
+  <script src="../scripts/archIn.js"></script>
+  <script src="../scripts/settings.js"></script>
+</html>

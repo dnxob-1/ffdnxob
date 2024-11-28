@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../css/settings.css" />
+    <link rel="icon" href="../images/favicon1.png" id="theFaviCon" />
+  </head>
+  <header>
+    <h1 id="setHeader">Settings</h1>
+  </header>
+  <body>
+    <section class="sets1">
+      <ul id="ul1">
+        <li>Dark mode <input id="enDark" type="checkbox" /></li>
+        <li>Enable copying <input id="enCopy" type="checkbox" /></li>
+      </ul>
+    </section>
+    <section class="sets2">
+      <ul id="ul2">
+        <li>Music player <input id="music" type="checkbox" /></li>
+        <li id="volume">
+          <input
+            type="range"
+            id="volSet"
+            min="0"
+            max="100"
+            step="1"
+            value="50"
+          /><span id="setVal">50</span>
+        </li>
+        <script>
+          const volSet = document.getElementById("volSet");
+          const setVal = document.getElementById("setVal");
+
+          volSet.addEventListener("input", () => {
+            setVal.textContent = volSet.value;
+          });
+        </script>
+        <li id="selectMusic">
+          <input type="file" id="musicInput" accept="audio/*" />
+          <button id="playMusicBut">Play</button>
+        </li>
+        <li>
+          Font-style
+          <select id="fontSelector">
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Helvetica">Helvetica</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Roboto" id="rbFont">Roboto</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+  </body>
+  <footer>
+    <audio
+      id="mainAudio"
+      src="../misc/Karajan - Mozart Requiem in D Minor K626 08 - III. SEQUENZ No. 6 Lacrimosa.mp3"
+      loop
+    ></audio>
+    <a href="main.html" id="goBack">back?</a>
+  </footer>
+  <script src="../scripts/settings.js"></script>
+</html>
