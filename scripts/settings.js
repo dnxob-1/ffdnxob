@@ -57,16 +57,25 @@ function darkOff() {
 function darkMode() {
   const enDark = document.getElementById("enDark");
   const theFaviCon = document.getElementById("theFaviCon");
+  const mainFaviCon = document.getElementById("mainFaviCon");
 
   window.addEventListener("DOMContentLoaded", function () {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
       darkOn();
-      theFaviCon.href = "../images/favicon2.png";
+      if (mainFaviCon) {
+        mainFaviCon.href = "images/favicon2.png";
+      } else if (theFaviCon) {
+        theFaviCon.href = "../images/favicon2.png";
+      }
       if (enDark) enDark.checked = true;
     } else {
       darkOff();
-      theFaviCon.href = "../images/favicon1.png";
+      if (mainFaviCon) {
+        mainFaviCon.href = "images/favicon1.png";
+      } else if (theFaviCon) {
+        theFaviCon.href = "../images/favicon1.png";
+      }
       if (enDark) enDark.checked = false;
     }
   });
@@ -92,6 +101,7 @@ function copyOn() {
     .forEach((element) => {
       element.style.userSelect = "text";
     });
+  console.log("Copying is turned on");
 }
 
 function copyOff() {
@@ -102,6 +112,7 @@ function copyOff() {
     .forEach((element) => {
       element.style.userSelect = "none";
     });
+  console.log("Copying is turned off");
 }
 
 function copyEn() {
@@ -160,13 +171,13 @@ function musicOn() {
     if (music) {
       if (musicState === "working") {
         displayOthers();
-        console.log("Music is working");
+        console.log("Music is on");
         music.checked = true;
         mainAudio.play();
       } else {
         removeOthers();
         music.checked = false;
-        console.log("Music is not working");
+        console.log("Music is not on");
       }
 
       music.addEventListener("change", () => {
@@ -230,7 +241,7 @@ function runChanger(font) {
   document.querySelectorAll("*").forEach((element) => {
     element.style.fontFamily = font;
   });
-  console.log(`Applied font: ${font}`);
+  console.log(`Current font: ${font}`);
 }
 
 function saveFont(font) {
