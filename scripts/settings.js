@@ -64,17 +64,17 @@ function darkMode() {
     if (savedTheme === "dark") {
       darkOn();
       if (mainFaviCon) {
-        mainFaviCon.href = "images/favicon2.png";
+        mainFaviCon.href = "assets/favicon2.png";
       } else if (theFaviCon) {
-        theFaviCon.href = "../images/favicon2.png";
+        theFaviCon.href = "../assets/favicon2.png";
       }
       if (enDark) enDark.checked = true;
     } else {
       darkOff();
       if (mainFaviCon) {
-        mainFaviCon.href = "images/favicon1.png";
+        mainFaviCon.href = "assets/favicon1.png";
       } else if (theFaviCon) {
-        theFaviCon.href = "../images/favicon1.png";
+        theFaviCon.href = "../assets/favicon1.png";
       }
       if (enDark) enDark.checked = false;
     }

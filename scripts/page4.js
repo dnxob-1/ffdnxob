@@ -11,7 +11,7 @@ async function openNavi() {
   navi.style.marginLeft = "0";
   arrImg.style.left = 200;
   arrImg.src = "";
-  arrImg.src = "../images/back.png";
+  arrImg.src = "../assets/back.png";
   isNaviOpen = true;
   upLink.style.display = "block";
   exClassesLink.style.display = "block";
@@ -29,7 +29,7 @@ function closeNavi() {
   goBack.style.display = "none";
   arrImg.style.left = 10;
   arrImg.src = "";
-  arrImg.src = "../images/next.png";
+  arrImg.src = "../assets/next.png";
   isNaviOpen = false;
 }
 
